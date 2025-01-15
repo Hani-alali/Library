@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتبة الكتب</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>مكتبة الكتب</h1>
+    </header>
+    <main>
+        <section>
+            <h2>الكتب المتوفرة</h2>
+            <form id="bookForm">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>اختيار</th>
+                            <th>إظهار التفاصيل</th>
+                            <th>السعر</th>
+                            <th>العنوان</th>
+                            <th>ISBN رمز الكتاب</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="radio" name="book" value="ألف ليلة وليلة" data-price="25000 ل.س" required></td>
+                            <td><input type="checkbox" onclick="toggleDetails('details1')"></td>
+                            <td>25000 ل.س</td>
+                            <td>ألف ليلة وليلة</td>
+                            <td>978-9770916738</td>
+                        </tr>
+                        <tr id="details1" class="details" style="display: none;">
+                            <td colspan="6">
+                                <strong>الناشر:</strong> دار المعارف<br>
+                                <strong>تصنيف الكتاب:</strong> قصص شعبية<br>
+                                <strong>ملخص:</strong> كتاب يحتوي على مجموعة من القصص الشعبية الشهيرة.<br>
+                                <strong>أهم ثلاث قصص:</strong>
+                                <div>
+                                    <div style="text-align:center ;">
+                                        <img src="images/sinbad.jpg" alt="رحلات السندباد السبع" width="120">
+                                        <p>رحلات السندباد السبع</p>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <img src="images/ali_baba.jpg" alt="علي بابا والأربعون حرامي" width="120">
+                                        <p>علي بابا والأربعون حرامي</p>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <img src="images/aladdin.jpg" alt="علاء الدين والمصباح" width="120">
+                                        <p>علاء الدين والمصباح</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="book" value="موسم الهجرة إلى الشمال" data-price="12000 ل.س"></td>
+                            <td><input type="checkbox" onclick="toggleDetails('details2')"></td>
+                            <td>12000 ل.س</td>
+                            <td>موسم الهجرة إلى الشمال</td>
+                            <td>978-9953891718</td>
+                        </tr>
+                        <tr id="details2" class="details" style="display: none;">
+                            <td colspan="6">
+                                <strong>الناشر:</strong> دار الجيل<br>
+                                <strong>تصنيف الكتاب:</strong> رواية عربية<br>
+                                <strong>ملخص:</strong> قصة اجتماعية تعكس صراع الهوية والانتماء.
+                                <strong>الغلاف:</strong>
+                                <div>
+                                    <div style="text-align:center ;">
+                                        <img src="images/hojra.jpg" alt="موسم الهجرة إلى الشمال "width="120">
+                                        <p>موسم الهجرة إلى الشمال</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="book" value="الخبز الحافي" data-price="10000 ل.س"></td>
+                            <td><input type="checkbox" onclick="toggleDetails('details3')"></td>
+                            <td>10000 ل.س</td>
+                            <td>الخبز الحافي</td>
+                            <td>978-9953451080</td>
+                        </tr>
+                        <tr id="details3" class="details" style="display: none;">
+                            <td colspan="6">
+                                <strong>الناشر:</strong> دار الساقي<br>
+                                <strong>تصنيف الكتاب:</strong> رواية ذاتية<br>
+                                <strong>ملخص:</strong> سيرة ذاتية لكاتب تعكس حياة البؤس والتحديات.
+                                <strong>الغلاف:</strong>
+                                <div>
+                                    <div style="text-align:center ;">
+                                        <img src="images/bread.jpg" alt="الخبز الحافي"width="120">
+                                        <p>الخبز الحافي</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" onclick="showOrderForm()">متابعة</button>
+            </form>
+           
+        </section>
+
+        <a href="Home.html">
+            <button class="btn">
+               الصفحة الرئيسية
+            </button>
+        </a>
+        <a href="aboutUs.html">
+            <button class="btn">
+              معلومات عنا
+            </button>
+        </a>
+
+        <section id="orderForm" style="display: none;">
+            <h2>نموذج الطلب</h2>
+            <form id="orderDetailsForm">
+                <p>الكتاب المختار: <span id="selectedBook"></span></p>
+                <p>السعر: <span id="selectedPrice"></span></p>
+                <label for="fullName">الاسم الكامل:</label>
+                <input type="text" id="fullName" name="fullName" pattern="^[\u0621-\u064A\s]+$" required>
+                <br><br>
+                <label for="nationalId">الرقم الوطني:</label>
+                <input type="text" id="nationalId" name="nationalId" pattern="\d{11}" required>
+                <br><br>
+                <label for="birthDate">تاريخ الميلاد:</label>
+                <input type="date" id="birthDate" name="birthDate" required>
+                <br><br>
+                <label for="phone">رقم الموبايل:</label>
+                <input type="tel" id="phone" name="phone" pattern="09[3|4]\d{7}" required>
+                <br><br>
+                <label for="email">الإيميل:</label>
+                <input type="email" id="email" name="email" required>
+                <br><br>
+                <button type="submit" onclick="submitForm(event)">إرسال</button>
+            </form>
+        </section>
+
+    </main>
+    <footer>
+        <p>حقوق النشر &copy; 2025 مكتبة الكتب</p>
+    </footer>
+
+    <script src="Myfanction.js">
+    </script>
+</body>
+</html>
